@@ -3,7 +3,7 @@ import { cartsModel } from "./models/carts.model.js";
 import ProductManager from "./ProductManager.class.js";
 
 export default class CartManager {
-  connection = mongoose.connect('mongodb+srv://martinpolese12:Rn46YL9aT2b7p0FD@ecommerce.bpmbcoi.mongodb.net/')
+  connection = mongoose.connect('mongodb+srv://LucasGomez:Patabilla100@cluster0.c1sjpqg.mongodb.net/?retryWrites=true&w=majority')
 
   productManager = new ProductManager()
 
