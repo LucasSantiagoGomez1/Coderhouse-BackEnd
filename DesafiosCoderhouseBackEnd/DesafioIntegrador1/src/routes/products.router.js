@@ -7,10 +7,26 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   let limit = Number(req.query.limit)
+  let page = Number(req.query.limit)
+  let sort = Number(req.query.sort)
+  let filtro = req.query.filtro
+  let filtroVal = req.query.filtroVal
 
-  let products = await productManager.getProducts(limit)
+  let products = await productManager.getProducts(limit, page, sort, filtro, filtroVal)
 
-  res.send({products}) // Se envian los productos en forma de objeto como pide la consigna
+  let respuesta = {
+    status: "success",
+    payload: products.docs,
+    totalPages: products.totalPages,
+    prevPage: products.prevPage,
+    nextPage: products.nextPage,
+    page: products.page,
+    hasPrevPage: products.hasPrevPage,
+    hasNextPage: products.hasNextPage,
+    prevLink: products.prevLink,
+    nextLink: products.nextLink
+  }
+  res.send(respuesta)
 })
 
 router.get('/:pid', async (req, res) => {
